@@ -14,6 +14,8 @@ const defaultOptions = {
     gasPriceCoef: 0
 }
 
+export type CalcTxFee = (clauses: Connex.VM.Clause[], _options?: Options) => Promise<BigNumber>
+
 export async function calcTxFee(clauses: Connex.VM.Clause[], _options: Options = {}): Promise<BigNumber> {
     const options = {
         ...defaultOptions,

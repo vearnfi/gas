@@ -3,6 +3,8 @@ import bn from 'bignumber.js'
 import type { BigNumber } from "bignumber.js"
 import Web3EthAbi from 'web3-eth-abi'
 
+export type BasePrice = (nodeOrConnex: Connex | string) => Promise<BigNumber>
+
 /**
  * Fetch Params VeChain smart contract to get the current base gas price.
  * @see {@link https://docs.vechain.org/tutorials/Useful-tips-for-building-a-dApp.html#_6-estimate-the-transaction-fee}

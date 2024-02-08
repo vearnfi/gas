@@ -1,6 +1,8 @@
 import bent from 'bent'
 import { VM_GAS } from './constants'
 
+export type VmGas = (clauses: Connex.VM.Clause[], nodeOrConnex: Connex | string, _caller?: string) => Promise<number>
+
 /**
  * Calculate cost based on the amount of data being written into storage.
  * @param {Connex.VM.Clause[]} clauses

@@ -1,5 +1,7 @@
 import { TX_GAS, CLAUSE_GAS, CLAUSE_GAS_CONTRACT_CREATION, ZERO_BYTES_GAS, NON_ZERO_BYTES_GAS } from "./constants";
 
+export type IntrinsicGas = (clauses: Connex.VM.Clause[]) => number
+
 function dataGas(data: string | undefined): number {
     if (data === undefined) { return 0 }
 
