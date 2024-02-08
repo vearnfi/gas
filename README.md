@@ -1,3 +1,5 @@
+[![test](https://github.com/vearnfi/gas/workflows/test/badge.svg)](https://github.com/vearnfi/gas/actions/workflows/test.yml) [![coverage](https://coveralls.io/repos/github/vearnfi/gas/badge.svg)](https://coveralls.io/github/vearnfi/gas) [![Maintainability](https://api.codeclimate.com/v1/badges/acc252babe2cf2fa6dc6/maintainability)](https://codeclimate.com/github/vearnfi/gas/maintainability)
+
 # Vechain Gas Price Calculation
 
 ## Acknowledgement
