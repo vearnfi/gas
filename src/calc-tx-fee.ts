@@ -1,37 +1,29 @@
-import type { BigNumber } from "bignumber.js"
-import { basePrice } from "./base-price";
-import { intrinsicGas } from "./intrinsic-gas";
-import { vmGas } from "./vm-gas";
+import type {BigNumber} from "bignumber.js";
 
-type Options = {
-    nodeOrConnex?: Connex | string
-    caller?: string
-    gasPriceCoef?: number
+export type CalcTxFee = (
+  gas: number,
+  baseGasPrice: BigNumber,
+  gasPriceCoef: number,
+) => BigNumber;
+
+/**
+ * Calculate tx fee given gas usage, baseGasPrice and the gasPriceCoefficient.
+ * CasPriceCoefficient in {0, 85, 255}.
+ * @param {number} gas Gas used to execute the tx.
+ * @param {BigNumber} baseGasPrice Base gas price fetched from the VeChain
+ * Params contract in wei.
+ * @param {number} gasPriceCoef Gas price coefficient to determine regular,
+ * medium or high gas cost.
+ * @return {BigNumber} Total transaction gas cost in wei.
+ */
+export function calcTxFee(
+  gas: number,
+  baseGasPrice: BigNumber,
+  gasPriceCoef: number,
+): BigNumber {
+  return baseGasPrice
+    .times(gasPriceCoef)
+    .idiv(255)
+    .plus(baseGasPrice)
+    .times(gas);
 }
-
-const defaultOptions = {
-    nodeOrConnex: "https://mainnet.veblocks.net",
-    gasPriceCoef: 0
-}
-
-export type CalcTxFee = (clauses: Connex.VM.Clause[], _options?: Options) => Promise<BigNumber>
-
-export async function calcTxFee(clauses: Connex.VM.Clause[], _options: Options = {}): Promise<BigNumber> {
-    const options = {
-        ...defaultOptions,
-        ..._options
-    }
-
-    const basePriceGas = await basePrice(options.nodeOrConnex)
-    const intrinsic = intrinsicGas(clauses)
-    const vm = await vmGas(clauses, options.nodeOrConnex, options.caller)
-
-    const txGas = intrinsic + vm
-
-    return basePriceGas
-        .times(options.gasPriceCoef)
-        .idiv(255)
-        .plus(basePriceGas)
-        .times(txGas)
-}
-

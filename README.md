@@ -13,10 +13,12 @@ npm i @vearnfi/gas
 ```
 
 ```ts
-import {calcTxFee} from '@vearnfi/gas'
+import {calcTxFee} from "@vearnfi/gas";
 
-const clauses = [{ data: '0x', value: '0x0', to: '0x1A6f69Bb160c199B1862c83291d364836558AE8F' }]
-const txFee = await calcTxFee(clauses)
+const clauses = [
+  {data: "0x", value: "0x0", to: "0x1A6f69Bb160c199B1862c83291d364836558AE8F"},
+];
+const txFee = await calcTxFee(clauses);
 ```
 
 This will:
@@ -40,7 +42,7 @@ which default to:
 
 ```ts
 const defaultOptions = {
-    nodeOrConnex: "https://mainnet.veblocks.net",
-    gasPriceCoef: 0,
-}
+  nodeOrConnex: "https://mainnet.veblocks.net",
+  gasPriceCoef: 0,
+};
 ```
