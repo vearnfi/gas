@@ -47,7 +47,8 @@ export function makeBaseGasPrice(nodeOrConnex: Connex | string): BaseGasPrice {
         outputs: [{name: "value", type: "uint256"}],
       })
       .call(
-        "0x000000000000000000000000000000000000626173652d6761732d7072696365",
+        "0x000000000000000000000000000000000000626173652d6761732d7072696365", // base-gas-price
+        // 0x000000…696365 is the key of base-gas-price https://docs.vechain.org/others/miscellaneous.html#key-of-governance-params
       );
     return new bn(outputs.decoded.value);
   };

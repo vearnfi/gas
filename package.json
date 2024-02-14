@@ -1,6 +1,6 @@
 {
   "name": "@vearnfi/gas",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "Calculate estimated gas usage for transactions",
   "repository": "https://github.com/vearnfi/gas.git",
   "bugs": "https://github.com/vearnfi/gas/issues",

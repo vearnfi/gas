@@ -25,18 +25,16 @@ export type Gas = Readonly<{
  */
 export function makeGas(
   nodeOrConnex: Connex | string = "https://mainnet.veblocks.net",
-) {
-  return function gas(): Gas {
-    const baseGasPrice = makeBaseGasPrice(nodeOrConnex);
-    const vmGas = makeVmGas(nodeOrConnex);
-    const estimate = makeEstimate(nodeOrConnex);
+): Gas {
+  const baseGasPrice = makeBaseGasPrice(nodeOrConnex);
+  const vmGas = makeVmGas(nodeOrConnex);
+  const estimate = makeEstimate(nodeOrConnex);
 
-    return Object.freeze({
-      baseGasPrice,
-      intrinsicGas,
-      vmGas,
-      calcTxFee,
-      estimate,
-    });
-  };
+  return Object.freeze({
+    baseGasPrice,
+    intrinsicGas,
+    vmGas,
+    calcTxFee,
+    estimate,
+  });
 }
