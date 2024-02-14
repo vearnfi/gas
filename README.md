@@ -18,8 +18,14 @@ import {makeGas} from "@vearnfi/gas";
 const clauses = [
   {data: "0x", value: "0x0", to: "0x1A6f69Bb160c199B1862c83291d364836558AE8F"},
 ];
-const gas = makeGas(connex /* or blanc to use  "https://mainnet.veblocks.net" */)
-const txFee = await gas.estimate(clauses, options);
+
+const gas = makeGas(connex /* or leave blank to use http req */)
+
+const txFee = await gas.estimate(clauses, [options]);
+// OR
+const baseGasPrice = await gas.baseGasPrice()
+// OR
+const intrinsicGas = await gas.intrinsicGas(clauses)
 ```
 
 This will:
