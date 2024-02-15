@@ -13,12 +13,19 @@ npm i @vearnfi/gas
 ```
 
 ```ts
-import {calcTxFee} from "@vearnfi/gas";
+import {makeGas} from "@vearnfi/gas";
 
 const clauses = [
   {data: "0x", value: "0x0", to: "0x1A6f69Bb160c199B1862c83291d364836558AE8F"},
 ];
-const txFee = await calcTxFee(clauses);
+
+const gas = makeGas(connex /* or leave blank to use http req */)
+
+const txFee = await gas.estimate(clauses, [options]);
+// OR
+const baseGasPrice = await gas.baseGasPrice()
+// OR
+const intrinsicGas = await gas.intrinsicGas(clauses)
 ```
 
 This will:
@@ -33,16 +40,14 @@ Options are:
 
 ```ts
 type Options = {
-    nodeOrConnex?: Connex | string  // the network to load additional gas information from
-    caller?: string                 // optional caller address for the vm gas estimation
-    gasPriceCoef?: number           // priority, 0 (low) to 255 (high)}
+  caller?: string // optional caller address for the vm gas estimation
+  gasPriceCoef?: number // priority, 0 (low) to 255 (high)}
 ```
 
 which default to:
 
 ```ts
 const defaultOptions = {
-  nodeOrConnex: "https://mainnet.veblocks.net",
   gasPriceCoef: 0,
 };
 ```
