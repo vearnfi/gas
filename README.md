@@ -42,6 +42,7 @@ Options are:
 type Options = {
   caller?: string // optional caller address for the vm gas estimation
   gasPriceCoef?: number // priority, 0 (low) to 255 (high)}
+}
 ```
 
 which default to:
